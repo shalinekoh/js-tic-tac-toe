@@ -25,7 +25,7 @@ form {
     grid-template-columns: repeat(3, auto);
 }
 
-#cell {
+.cell {
     border: black 2px solid;
     width: var(--cell-size);
     height: var(--cell-size);
