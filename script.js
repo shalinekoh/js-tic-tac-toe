@@ -59,18 +59,15 @@ const Game = (() => {
         player1Turn = !player1Turn
     }
     // TODO
-    const gameOver = (playerMark) => {
-        // gameBoard.innerHTML = '';
+    const gameOver = () => {
         container.removeChild(gameBoard);
         gameOverContainer = document.createElement("div");
         container.appendChild(gameOverContainer)
         gameOverText = document.createElement("h3");
         gameOverContainer.appendChild(gameOverText);
         gameOverText.innerHTML = "GAME OVER."
-        winningText = document.createElement("h2");
-        gameOverContainer.appendChild(winningText);
-        player = playerMark == "X" ? 1 : 2;
-        winningText.innerHTML = `Player ${player} wins!`;
+        resultText = document.createElement("h2");
+        gameOverContainer.appendChild(resultText);
     }
 
     const checkWin = () => {
@@ -86,17 +83,30 @@ const Game = (() => {
         for(i=0; i<winningCombo.length; i++){
             const [a,b,c] = winningCombo[i];
             if(Gameboard.board[a] === Gameboard.board[b] && Gameboard.board[a] === Gameboard.board[c] && Gameboard.board[a] != ''){
-                gameOver(Gameboard.board[a]);
+                gameOver();
+                player = Gameboard.board[a] == "X" ? 1 : 2;
+                resultText.innerHTML = `Player ${player} wins!`;
             }
         }
     }
+
+    const checkDraw = () => {
+        for(i=0; i<Gameboard.board.length; i++){
+            if (Gameboard.board[i] == ''){
+                return
+            }
+            }
+        gameOver();
+        resultText.innerHTML = "It's a draw."
+    }
+
 
     const handleClick = (event) => {
         let cellClicked = parseInt(event.target.id.slice(-1));
         playerMark = player1Turn ? player1.mark : player2.mark;
         addMove(playerMark, cellClicked);
         checkWin();
-
+        checkDraw();
     }
     return {
         start,
