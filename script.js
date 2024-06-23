@@ -61,7 +61,7 @@ const Game = (() => {
     }
 
     const gameOver = () => {
-        container.removeChild(gameBoard);
+        gameBoard.innerHTML = "";
         gameOverContainer = document.createElement("div");
         container.appendChild(gameOverContainer)
         gameOverText = document.createElement("h3");
@@ -74,6 +74,7 @@ const Game = (() => {
         restartBtn.innerHTML = "Restart"
 
         restartBtn.addEventListener("click", () => {
+            container.removeChild(gameOverContainer);
             gameOverContainer.innerHTML = "";
             console.log("RESTART")
         })
