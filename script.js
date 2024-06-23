@@ -35,30 +35,31 @@ const Gameboard = (() => {
         board,
         render,
     }
-})();
+});
 
 const Game = (() => {
     let player1Turn;
     const start = () => {
+        gameboard = Gameboard();
         player1 = createPlayers(player1Name.value, "X")
         player2 = createPlayers(player2Name.value, "O")
         player1Turn = true;
-        Gameboard.render();
+        gameboard.render();
     }
 
     const addMove = (mark, index) => {
-        if (Gameboard.board[index] != 'X' && Gameboard.board[index] != 'O'){
-            Gameboard.board[index] = mark
+        if (gameboard.board[index] != 'X' && gameboard.board[index] != 'O'){
+            gameboard.board[index] = mark
             switchPlayerTurn();
             }
-            Gameboard.render();
+            gameboard.render();
 
     }
 
     const switchPlayerTurn = () => {
         player1Turn = !player1Turn
     }
-    // TODO
+
     const gameOver = () => {
         container.removeChild(gameBoard);
         gameOverContainer = document.createElement("div");
@@ -68,6 +69,14 @@ const Game = (() => {
         gameOverText.innerHTML = "GAME OVER."
         resultText = document.createElement("h2");
         gameOverContainer.appendChild(resultText);
+        restartBtn = document.createElement("button");
+        gameOverContainer.appendChild(restartBtn);
+        restartBtn.innerHTML = "Restart"
+
+        restartBtn.addEventListener("click", () => {
+            gameOverContainer.innerHTML = "";
+            console.log("RESTART")
+        })
     }
 
     const checkWin = () => {
@@ -82,17 +91,17 @@ const Game = (() => {
         [2,4,6]]
         for(i=0; i<winningCombo.length; i++){
             const [a,b,c] = winningCombo[i];
-            if(Gameboard.board[a] === Gameboard.board[b] && Gameboard.board[a] === Gameboard.board[c] && Gameboard.board[a] != ''){
+            if(gameboard.board[a] === gameboard.board[b] && gameboard.board[a] === gameboard.board[c] && gameboard.board[a] != ''){
                 gameOver();
-                player = Gameboard.board[a] == "X" ? 1 : 2;
+                player = gameboard.board[a] == "X" ? 1 : 2;
                 resultText.innerHTML = `Player ${player} wins!`;
             }
         }
     }
 
     const checkDraw = () => {
-        for(i=0; i<Gameboard.board.length; i++){
-            if (Gameboard.board[i] == ''){
+        for(i=0; i<gameboard.board.length; i++){
+            if (gameboard.board[i] == ''){
                 return
             }
             }
