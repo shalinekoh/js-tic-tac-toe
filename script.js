@@ -16,7 +16,7 @@ const createPlayers = (name, mark) => {
 }
 
 const Gameboard = (() => {
-    board = ['X','O','','','','','','',''];
+    board = ['','','','','','','','',''];
 
     const render = () => {
         gameBoard.innerHTML = '';
@@ -46,13 +46,20 @@ const Game = (() => {
     }
 
     const addMove = (mark, index) => {
-        Gameboard.board[index] = mark
-        Gameboard.render();
+        if (Gameboard.board[index] != 'X' && Gameboard.board[index] != 'O'){
+            Gameboard.board[index] = mark
+            switchPlayerTurn();
+            }
+            Gameboard.render();
 
     }
 
     const switchPlayerTurn = () => {
         player1Turn = !player1Turn
+    }
+    // TODO
+    const gameOver = () => {
+        console.log("GAME OVER")
     }
 
     const checkWin = () => {
@@ -78,7 +85,6 @@ const Game = (() => {
         playerMark = player1Turn ? player1.mark : player2.mark;
         addMove(playerMark, cellClicked);
         checkWin();
-        switchPlayerTurn();
 
     }
     return {
@@ -86,5 +92,3 @@ const Game = (() => {
         handleClick
     }
 })();
-
-// Gameboard.render();
