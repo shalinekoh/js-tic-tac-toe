@@ -2,6 +2,7 @@ startButton = document.querySelector("form button")
 player1Name = document.getElementById("player1")
 player2Name = document.getElementById("player2")
 gameBoard = document.querySelector(".game-board")
+container = document.querySelector("body");
 
 startButton.addEventListener("click", (event) =>{
     event.preventDefault();
@@ -58,8 +59,18 @@ const Game = (() => {
         player1Turn = !player1Turn
     }
     // TODO
-    const gameOver = () => {
-        console.log("GAME OVER")
+    const gameOver = (playerMark) => {
+        // gameBoard.innerHTML = '';
+        container.removeChild(gameBoard);
+        gameOverContainer = document.createElement("div");
+        container.appendChild(gameOverContainer)
+        gameOverText = document.createElement("h3");
+        gameOverContainer.appendChild(gameOverText);
+        gameOverText.innerHTML = "GAME OVER."
+        winningText = document.createElement("h2");
+        gameOverContainer.appendChild(winningText);
+        player = playerMark == "X" ? 1 : 2;
+        winningText.innerHTML = `Player ${player} wins!`;
     }
 
     const checkWin = () => {
@@ -75,7 +86,7 @@ const Game = (() => {
         for(i=0; i<winningCombo.length; i++){
             const [a,b,c] = winningCombo[i];
             if(Gameboard.board[a] === Gameboard.board[b] && Gameboard.board[a] === Gameboard.board[c] && Gameboard.board[a] != ''){
-                gameOver();
+                gameOver(Gameboard.board[a]);
             }
         }
     }
