@@ -52,11 +52,14 @@ const Gameboard = (() => {
 
 const Game = (() => {
     let player1Turn;
+    let gameOverFlag;
+
     const start = () => {
         gameboard = Gameboard();
         player1 = createPlayers("X")
         player2 = createPlayers("O")
         player1Turn = true;
+        gameOverFlag = false;
         gameboard.render();
     }
 
@@ -74,6 +77,8 @@ const Game = (() => {
     }
 
     const gameOver = () => {
+        if (gameOverFlag) return;
+        gameOverFlag = true;
         startButton.disabled = true;
         gameBoard.innerHTML = "";
         gameOverContainer = document.createElement("div");
@@ -142,6 +147,7 @@ const Game = (() => {
     }
 
     const handleClick = (event) => {
+        if (gameOverFlag) return;
         let cellClicked = parseInt(event.target.id.slice(-1));
         playerMark = getCurrentPlayer();
         addMove(playerMark, cellClicked);
