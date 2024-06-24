@@ -16,9 +16,9 @@ body {
 
 form {
     display: flex;
-    /* gap: 20px; */
     justify-content: center;
 }
+
 form button,
 #restartBtn {
     font-size: large;
@@ -38,6 +38,7 @@ form button:hover,
     color: white;
     font-weight: bold;
 }
+
 .game-board {
     display: grid;
     justify-content: center;
@@ -79,14 +80,6 @@ h1 {
     font-weight: bolder;
     margin: 0;
     padding: 20px 0 0 20px;
-}
-
-.gameOverContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: red;
 }
 
 #restartBtn {

@@ -1,6 +1,4 @@
 startButton = document.querySelector("form button")
-// player1Name = document.getElementById("player1")
-// player2Name = document.getElementById("player2")
 gameBoard = document.querySelector(".game-board")
 container = document.querySelector("body");
 
