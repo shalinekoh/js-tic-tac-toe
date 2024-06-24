@@ -110,16 +110,20 @@ const Game = (() => {
         resultText.innerHTML = "It's a draw."
     }
 
+    const getCurrentPlayer = () => {
+        return player1Turn ? player1.mark : player2.mark;
+    }
 
     const handleClick = (event) => {
         let cellClicked = parseInt(event.target.id.slice(-1));
-        playerMark = player1Turn ? player1.mark : player2.mark;
+        playerMark = getCurrentPlayer();
         addMove(playerMark, cellClicked);
         checkWin();
         checkDraw();
     }
     return {
         start,
+        getCurrentPlayer,
         handleClick
     }
 })();
