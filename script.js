@@ -29,6 +29,19 @@ const Gameboard = (() => {
             gameBoard.appendChild(cell);
 
             cell.addEventListener("click", Game.handleClick, {once: true})
+
+            cell.addEventListener("mouseover", (event) => {
+                if (event.target.innerHTML === '') {
+                    event.target.innerHTML = Game.getCurrentPlayer();
+                    event.target.style.color = "gray"; // Change color to distinguish hover effect
+                }
+            });
+
+            cell.addEventListener("mouseout", (event) => {
+                if (event.target.style.color === "gray") {
+                    event.target.innerHTML = '';
+                }
+            });
         });
     }
     return {
