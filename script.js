@@ -1,6 +1,6 @@
 startButton = document.querySelector("form button")
-player1Name = document.getElementById("player1")
-player2Name = document.getElementById("player2")
+// player1Name = document.getElementById("player1")
+// player2Name = document.getElementById("player2")
 gameBoard = document.querySelector(".game-board")
 container = document.querySelector("body");
 
@@ -9,9 +9,8 @@ startButton.addEventListener("click", (event) =>{
     Game.start();
 })
 
-const createPlayers = (name, mark) => {
+const createPlayers = (mark) => {
     return {
-        name,
         mark
     }
 }
@@ -26,6 +25,7 @@ const Gameboard = (() => {
             cell.classList.add("cell");
             cell.setAttribute("id", `cell${index}`);
             cell.innerHTML = element;
+            cell.style.color = "red";
             gameBoard.appendChild(cell);
 
             cell.addEventListener("click", Game.handleClick, {once: true})
@@ -41,8 +41,8 @@ const Game = (() => {
     let player1Turn;
     const start = () => {
         gameboard = Gameboard();
-        player1 = createPlayers(player1Name.value, "X")
-        player2 = createPlayers(player2Name.value, "O")
+        player1 = createPlayers("X")
+        player2 = createPlayers("O")
         player1Turn = true;
         gameboard.render();
     }
