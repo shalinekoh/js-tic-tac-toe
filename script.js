@@ -74,6 +74,7 @@ const Game = (() => {
     }
 
     const gameOver = () => {
+        startButton.disabled = true;
         gameBoard.innerHTML = "";
         gameOverContainer = document.createElement("div");
         container.appendChild(gameOverContainer)
@@ -90,7 +91,7 @@ const Game = (() => {
         restartBtn.addEventListener("click", () => {
             container.removeChild(gameOverContainer);
             gameOverContainer.innerHTML = "";
-            console.log("RESTART")
+            startButton.disabled = false;
         })
 
         // Add styles
