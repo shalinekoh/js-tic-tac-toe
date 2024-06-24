@@ -19,7 +19,8 @@ form {
     /* gap: 20px; */
     justify-content: center;
 }
-form button {
+form button,
+#restartBtn {
     font-size: large;
     border-radius: 10px;
     border: none;
@@ -30,7 +31,8 @@ form button {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-form button:hover {
+form button:hover,
+#restartBtn:hover {
     background-color: rgba(0, 0, 0, 0.377);
     cursor: pointer;
     color: white;
@@ -77,4 +79,16 @@ h1 {
     font-weight: bolder;
     margin: 0;
     padding: 20px 0 0 20px;
+}
+
+.gameOverContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+}
+
+#restartBtn {
+    padding: 10px 50px;
 }

@@ -85,12 +85,22 @@ const Game = (() => {
         restartBtn = document.createElement("button");
         gameOverContainer.appendChild(restartBtn);
         restartBtn.innerHTML = "Restart"
+        restartBtn.id = "restartBtn"
 
         restartBtn.addEventListener("click", () => {
             container.removeChild(gameOverContainer);
             gameOverContainer.innerHTML = "";
             console.log("RESTART")
         })
+
+        // Add styles
+        gameOverContainer.style.position = "absolute";
+        gameOverContainer.style.top = "50%";
+        gameOverContainer.style.left = "50%";
+        gameOverContainer.style.transform = "translate(-50%, -50%)";
+        gameOverContainer.style.textAlign = "center";
+        gameOverContainer.style.color = "white";
+
     }
 
     const checkWin = () => {
@@ -109,6 +119,7 @@ const Game = (() => {
                 gameOver();
                 player = gameboard.board[a] == "X" ? 1 : 2;
                 resultText.innerHTML = `Player ${player} wins!`;
+                return true;
             }
         }
     }
@@ -119,8 +130,10 @@ const Game = (() => {
                 return
             }
             }
-        gameOver();
-        resultText.innerHTML = "It's a draw."
+        if (checkWin() != true){
+            gameOver();
+            resultText.innerHTML = "It's a draw."
+        };
     }
 
     const getCurrentPlayer = () => {
